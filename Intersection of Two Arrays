@@ -1,0 +1,14 @@
+class Solution {
+    public int[] intersection(int[] nums1, int[] nums2) {
+        Set<Integer> set = new HashSet<>();  
+        Arrays.sort(nums1);
+        for(int num : nums2){
+            int index = Arrays.binarySearch(nums1, num);
+            if(index >=0) set.add(num); }
+        
+        int[] res = new int[set.size()];
+        int i = 0;
+        for(int num : set) res[i++] = num;
+        return res;
+    }
+}
