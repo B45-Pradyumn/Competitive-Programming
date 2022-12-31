@@ -1,0 +1,43 @@
+class Solution {
+public String reverseVowels(String str) {
+    Set<Character> vowels = new HashSet<>();
+    vowels.add('a');
+    vowels.add('A');
+    vowels.add('e');
+    vowels.add('E');
+    vowels.add('i');
+    vowels.add('I');
+    vowels.add('o');
+    vowels.add('O');
+    vowels.add('u');
+    vowels.add('U');
+    int low = 0;
+    int high = str.length()-1;
+    StringBuilder s = new StringBuilder(str);
+    //hello -> holle
+    while(low < high)
+    {
+        if(vowels.contains(s.charAt(low)) && vowels.contains(s.charAt(high)))
+        {
+            char left = s.charAt(low);
+            char right = s.charAt(high);
+            s.setCharAt(high,left);
+            s.setCharAt(low,right);
+            low++;
+            high--;   
+        }
+        else
+        {
+            if(!vowels.contains(s.charAt(low)))
+            {
+                low++;
+            }
+            if(!vowels.contains(s.charAt(high)))
+            {
+                high--;
+            }
+        }
+    }
+    return s.toString();
+    }
+}
