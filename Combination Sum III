@@ -1,0 +1,29 @@
+class Solution {
+    public List<List<Integer>> combinationSum3(int k, int n) {
+        List<List<Integer>> ans =new ArrayList<>();
+        LinkedList<Integer> comb=new LinkedList<Integer>();
+        if(k>n)
+            return ans;
+        else{
+            backtrack(ans,n,k,0,comb);
+            return ans;
+        }
+    }
+    public void backtrack(List<List<Integer>> ans,int remain,int k,int start,LinkedList<Integer> comb)
+    {
+        if(remain==0 && comb.size()==k){
+            ans.add(new ArrayList<Integer>(comb));
+            return;
+        }
+        else if(remain<0 || comb.size()==k)
+            return;
+        for(int i=start;i<9;++i){
+            comb.add(i+1);
+            backtrack(ans,remain-i-1,k,i+1,comb);
+            comb.removeLast();
+        }
+    }
+}
+
+    
+   
