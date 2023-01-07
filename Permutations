@@ -1,0 +1,25 @@
+class Solution {
+    public List<List<Integer>> permute(int[] nums) {
+        List list = new ArrayList();
+        recurse(list,new HashSet(),new Stack(),nums);
+        return list;
+    }
+    
+    public void recurse(List list,HashSet check,Stack temp, int []nums){
+        
+        if(check.size() == nums.length){
+            ArrayList al = new ArrayList(temp);
+            list.add(al);
+            return;
+        }
+        for(int i = 0; i < nums.length; i++){
+            if(!check.contains(i)){
+                check.add(i);
+                temp.push(nums[i]);
+                recurse(list,check,temp,nums);
+                temp.pop();
+                check.remove(i);
+            }
+        }
+    }
+}
