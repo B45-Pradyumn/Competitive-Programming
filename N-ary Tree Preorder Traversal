@@ -1,0 +1,19 @@
+class Solution {
+    List<Integer>list=new ArrayList<>();
+    public List<Integer> preorder(Node root) {
+        
+        traverse(root);
+        return list;
+        
+    }
+    public void traverse(Node root){
+        if(root==null){
+            return;
+        }
+        list.add(root.val);
+        for(Node n:root.children){
+            traverse(n);
+        }
+        
+    }
+}
