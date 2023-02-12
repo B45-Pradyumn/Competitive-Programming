@@ -1,0 +1,32 @@
+class Solution {
+    long fuel=0;
+    public long fun(List<List<Integer>> tree, int seats,int cur,int vis[]){
+        double c=0;
+        if(cur!=0){
+            c=1;
+        }
+        vis[cur]=1;
+        
+        for(int i:tree.get(cur)){
+            if(vis[i]==0){
+                c+=fun(tree,seats,i,vis);
+            }
+        }
+        if(cur!=0)
+        fuel+=(long)Math.ceil(c/seats);
+        return (long)c;
+    }
+    public long minimumFuelCost(int[][] roads, int seats) {
+        List<List<Integer>> tree=new ArrayList<>();
+        int n=roads.length;
+        for(int i=0;i<n+1;i++){
+            tree.add(new ArrayList<>());
+        }
+        for(int[] i:roads){
+            tree.get(i[0]).add(i[1]);
+            tree.get(i[1]).add(i[0]);
+        }
+        fun(tree,seats,0,new int[n+1]);
+        return fuel;
+    }
+}
