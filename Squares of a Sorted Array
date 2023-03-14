@@ -1,0 +1,24 @@
+//to eliminate a loop(reduce TC) we use two-pointer along with if-else
+
+class Solution {
+    public int[] sortedSquares(int[] nums) {
+        int n=nums.length;
+        int op[]=new int[n];
+        int curr=n-1;
+        int p1=0,p2=n-1;
+        while (p1<=p2){
+            int tmpL=nums[p1]*nums[p1];
+            int tmpR=nums[p2]*nums[p2];
+            if(tmpL>tmpR){
+                op[curr]=tmpL;
+                curr--;
+                p1++;}
+            else{
+                op[curr]=tmpR;
+                curr--;
+                p2--;
+            }
+        }
+        return op;
+    }
+}
