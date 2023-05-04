@@ -1,0 +1,27 @@
+class Solution {
+    public String mergeAlternately(String word1, String word2) {
+        String Ans="";
+        int a1=0,a2=0;
+        int totallength = word1.length() + word2.length();
+
+        while (totallength !=0){
+
+            if (word1.length() > a1 && word2.length() > a2) {
+                Ans = Ans + word1.charAt(a1);
+                Ans = Ans + word2.charAt(a2);
+                a1+=1;
+                a2+=1;
+            }
+            else if (word1.length() > a1){
+                Ans=Ans+word1.charAt(a1);
+                a1+=1;
+            }
+            else if(word2.length() > a2) {
+                Ans=Ans+word2.charAt(a2);
+                a2+=1;
+            }
+            totallength-=1;
+        }
+        return Ans;   
+    }
+}
