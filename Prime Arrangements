@@ -1,0 +1,18 @@
+//p=primePermutations , np=nonPrimePermutations
+class Solution {
+    private final static int N = (int) (Math.pow(10, 9) + 7);
+    public int numPrimeArrangements(int n) {
+        final var sieve = new boolean[n + 1]; // here we could use new BitSet(n + 1) to save memory
+        int cnt = 0;
+        for (int i = 2; i <= n; i++)
+            if (!sieve[i]) {
+                for (int j = i; j <= n; sieve[j] = true, j += i) {}
+                cnt++;
+            }
+        long p = 1, np = 1;
+        for (int i = 1; i <= cnt; p *= i, p %= N, i++) {}
+        for (int i = 1; i <= n - cnt; np *= i, np %= N, i++) {}
+        return (int) ( (p * np) % N );
+    }
+}
+    
