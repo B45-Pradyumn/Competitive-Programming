@@ -1,0 +1,28 @@
+class Solution {
+    public int findLucky(int[] arr) {
+        //create a hashMap
+        HashMap<Integer, Integer> map= new HashMap<>();
+        // need arraylist to keep track of maxm of them
+        List<Integer> ls= new ArrayList<>();
+
+
+        for(int a: arr){
+            // if contains
+            if(map.containsKey(a)){
+                map.put(a, map.get(a)+1);
+            }else{
+                map.put(a,1);
+                    ls.add(a);
+
+            }
+        }
+        // we need to sort the arraylist in descending order
+        Collections.sort(ls, Collections.reverseOrder());
+
+        for(int i=0;i<ls.size();i++){
+            if(ls.get(i)==map.get(ls.get(i))) return ls.get(i);
+        }
+        return -1;
+        
+    }
+}
