@@ -1,0 +1,27 @@
+class Solution {
+    public String reformat(String s) {
+        int letters = 0, numbers = 0;
+        for(char c : s.toCharArray()){
+            if(Character.isDigit(c)) numbers++;
+            else letters++;
+        }
+        
+        if(Math.abs(letters - numbers) > 1) return "";
+        return letters > numbers ? makeResult(s,0,1,true) : makeResult(s,1,0,false);
+    }
+    
+    private String makeResult(String s, int i, int j, boolean flag){
+        char[] c = s.toCharArray();
+        char[] res = new char[s.length()];
+        for(char ch: c){
+            if(Character.isLetter(ch)){
+                res[i] = ch;
+                i+=2;
+            }else{
+                res[j] = ch;
+                j+=2;
+            }
+        }
+        return String.valueOf(res);
+    }
+}
