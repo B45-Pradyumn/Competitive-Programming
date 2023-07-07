@@ -1,0 +1,17 @@
+class Solution{
+  public List<Integer> mostVisited(int n, int[] R) {
+
+	int start = R[0];
+	int end = R[R.length - 1];
+
+	List<Integer> res = new ArrayList<>();
+
+	if(start <= end){
+		for (int i = start; i <= end ; ++i) res.add(i);
+	}else{
+		for (int i = 1; i <= end; ++i)  res.add(i);  // count first visited
+		for (int i = start; i <= n; ++i)  res.add(i); // count last visited.
+	}
+	return res;
+  }
+}
