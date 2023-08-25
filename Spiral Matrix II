@@ -1,0 +1,35 @@
+class Solution {
+    public int[][] generateMatrix(int n) {
+        int[][] ans=new int[n][n];
+        int[][] q=new int[n][n];
+        int k=1;
+        int left=0,rigth=n-1,top=0,bottom=n-1;
+        while(true){
+        for(int i=left;i<=rigth;i++){
+            ans[top][i]=k++;
+        }
+         top++;
+        if(left>rigth || top>bottom)
+        break;
+       for(int i=top;i<=bottom;i++){
+            ans[i][rigth]=k++;
+        }
+        rigth--;
+        if(left>rigth || top>bottom)
+        break;
+        for(int i=rigth;i>=left;i--){
+            ans[bottom][i]=k++;
+        }
+        bottom--;
+        if(left>rigth || top>bottom)
+        break;
+        for(int i=bottom;i>=top;i--){
+            ans[i][left]=k++;
+        }
+        left++;
+        if(left>rigth || top>bottom)
+        break;
+        }
+        return ans;
+    }
+}
