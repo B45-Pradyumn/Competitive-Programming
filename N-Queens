@@ -1,0 +1,77 @@
+class Solution {
+    public static void addSolution(String board[][],List<List<String>>ans,int n){
+        List<String>list=new ArrayList<>();
+        for(int i=0;i<n;i++){
+           StringBuilder row=new StringBuilder();
+            for(int j=0;j<n;j++){
+                row.append(board[i][j]);
+            }
+           list.add(row.toString());
+        }
+        ans.add(list);
+    }
+
+    public static boolean isSafe(int row,int col,String board[][],int n){
+        int x=row;
+        int y=col;
+
+        //row check
+        while(y>=0){
+            if(board[x][y]=="Q"){
+                return false;
+            }
+            y--;
+        }
+
+        x=row;
+        y=col;
+
+        //up diagonal
+        while(x>=0 && y>=0){
+            if(board[x][y]=="Q"){
+                return false;
+            }
+            x--;
+            y--;
+        }
+
+        x=row;
+        y=col;
+
+        //down diagonal
+        while(x<n && y>=0){
+            if(board[x][y]=="Q"){
+                return false;
+            }
+            x++;
+            y--;
+        }
+
+        return true;
+    }
+    public void solve(int col,String board[][],List<List<String>>ans,int n){
+        if(col==n){
+            addSolution(board,ans,n);
+            return;
+        }
+
+        for(int row=0;row<n;row++){
+            if(isSafe(row,col,board,n)){
+                board[row][col]="Q";
+                solve(col+1, board, ans, n);
+                board[row][col]=".";
+            }
+        }
+    }
+
+    public List<List<String>> solveNQueens(int n) {
+        List<List<String>>ans=new ArrayList<>();
+        String board[][]=new   String[n][n];
+        for(int i=0;i<n;i++){
+            Arrays.fill(board[i],".");
+        }
+
+        solve(0,board,ans,n);
+        return ans;
+    }
+}
